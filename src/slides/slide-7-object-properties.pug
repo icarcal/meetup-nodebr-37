@@ -1,0 +1,31 @@
+section
+  section
+    h2.title Object Shorthand Properties
+
+  section
+    pre
+      code.javascript.
+        // pré ES6
+        const name = 'Yoda';
+        const lightsaberColor = 'verde';
+        const darkSide = false;
+
+        const jedi = {
+          name: name,
+          lightsaberColor: lightsaberColor,
+          darkSide: darkSide,
+        }
+
+  section
+    pre
+      code.javascript.
+        // pós ES6
+        const name = 'Yoda';
+        const lightsaberColor = 'verde';
+        const darkSide = false;
+
+        const jedi = {
+          name,
+          lightsaberColor,
+          darkSide,
+        }

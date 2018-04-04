@@ -1,0 +1,146 @@
+section
+  section
+    h2.title FUNCTIONS
+
+  section
+    h2.title DEFAULT PARAMETERS
+
+  section
+    pre
+      code.javascript.
+        // antes
+        function jediAttack(name, lightsaberColor) {
+          name = name || 'Yoda';
+          lightsaberColor = lightsaberColor || 'verde';
+
+          console.log(`${this.name} utilizou seu sabre de luz ${this.lightsaberColor}`);
+        }
+
+        jediAttack();
+        // Yoda utilizou seu sabre de luz verde
+
+        jediAttack('Anakin', 'vermelho');
+        // Anakin utilizou seu sabre de luz vermelho
+
+  section
+    pre
+      code.javascript.
+        // depois
+        function jediAttack(name = 'Yoda', lightsaberColor = 'verde') {
+          console.log(`${this.name} utilizou seu sabre de luz ${this.lightsaberColor}`);
+        }
+
+        jediAttack();
+        // Yoda utilizou seu sabre de luz verde
+
+        jediAttack('Anakin', 'vermelho');
+        // Anakin utilizou seu sabre de luz vermelho
+
+  section
+    h2.title ARROW FUNCTIONS
+
+  section
+    pre
+      code.javascript.
+        const jedis = [
+          { name: 'Luke', darkSide: false },
+          { name: 'Anakin', darkSide: true },
+        ]
+
+        const darkSide = jedis.filter(function filterJedis(jedi) {
+          return jedi.darkSide;
+        });
+
+        console.log(darkSide);
+        // [{ name: 'Anakin', darkSide: true }]
+
+  section
+    pre
+      code.javascript.
+        const jedis = [
+          { name: 'Luke', darkSide: false },
+          { name: 'Anakin', darkSide: true },
+        ]
+
+        const darkSide = jedis.filter((jedi) => {
+          return jedi.darkSide;
+        });
+
+        console.log(darkSide);
+        // [{ name: 'Anakin', darkSide: true }]
+
+
+  section
+    pre
+      code.javascript.
+        const jedis = [
+          { name: 'Luke', darkSide: false },
+          { name: 'Anakin', darkSide: true },
+        ]
+
+        const darkSide = jedis.filter(jedi => jedi.darkSide);
+
+        console.log(darkSide);
+        // [{ name: 'Anakin', darkSide: true }]
+
+  section
+    h3.title Não devemos usar sempre!
+    h3.fragment Cuidado com o <i>this</i>
+
+  section
+    pre
+      code.javascript.
+        const jedi = {
+          name: 'Luke',
+          darkSide: false,
+          lightsaberColor: 'azul',
+
+          attack: function() {
+            setTimeout(function() {
+              console.log(`${this.name} utilizou seu sabre de luz ${this.lightsaberColor}`);
+            }, 1000);
+          }
+        }
+
+        jedi.attack();
+        // utilizou seu sabre de luz
+        // this.name e this.lightsaberColor = undefined
+
+  section
+    pre
+      code.javascript.
+        const jedi = {
+          name: 'Luke',
+          darkSide: false,
+          lightsaberColor: 'azul',
+
+          attack: function() {
+            let self = this;
+            setTimeout(() => {
+              console.log(`${self.name} utilizou seu sabre de luz ${self.lightsaberColor}`);
+            }, 1000);
+          }
+        }
+
+        jedi.attack();
+        // Luke utilizou seu sabre de luz azul
+
+  section
+    pre
+      code.javascript.
+        const jedi = {
+          name: 'Cat Vader',
+          darkSide: true,
+          lightsaberColor: 'vermelho',
+
+          attack: function() {
+            setTimeout(() => {
+              console.log(`${this.name} utilizou seu sabre de luz ${this.lightsaberColor}`);
+            }, 1000);
+          }
+        }
+
+        jedi.attack();
+        // Cat Vader utilizou seu sabre de luz vermelho
+
+  section(data-background="https://media.giphy.com/media/WBea8bEI90ViM/giphy.gif")
