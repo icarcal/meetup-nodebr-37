@@ -1,74 +1,38 @@
 section
   section
-    h2.title OBJECTS
+    h2.title OBJECTS (ES8)
 
   section
-    h4.title Array.from()
+    h4.title Object.entries()
 
     pre
       code.javascript.
-        const hero = Array.from('Batman');
+        const heroes = {
+          hulk: 0,
+          thor: 1,
+          blackPanther: 2,
+          drStrange: 3,
+        }
 
-        console.log(hero);
-        // ["B", "a", "t", "m", "a", "n"]
-
-        console.log(hero.join(''));
-        // 'Batman'
-
-        // é possível utilizar todas as funçoes
-        // presentes em um array
+        console.log(Object.entries(heroes));
+        //[
+        //   ["hulk", 0]
+        //   ["thor", 1]
+        //   ["blackPanther", 2]
+        //   ["drStrange", 3]
+        //]
 
   section
-    h4.title Array.of()
+    h4.title Object.values()
 
     pre
       code.javascript.
-        const array = Array.of('Batman', 'Dark Knight', 1, 2, {});
+        const heroes = {
+          hulk: 0,
+          thor: 1,
+          blackPanther: 2,
+          drStrange: 3,
+        }
 
-        console.log(array);
-        // ["Batman", "Dark Knight", 1, 2, {}]
-
-        console.log(hero.join(''));
-        // "BatmanDark Knight12[object Object]"
-
-        // é possível utilizar todas as funçoes
-        // presentes em um array
-
-  section
-    h4.title Array.find() & Array.findIndex()
-
-    pre
-      code.javascript.
-        const heroes = [
-          { name: 'Hulk', publisher: 'Marvel' },
-          { name: 'Spiderman', publisher: 'Marvel' },
-          { name: 'Thor', publisher: 'Marvel' },
-          { name: 'Iron Man', publisher: 'Marvel' },
-        ];
-
-        console.log(heroes.find(hero => hero.name === 'Thor'));
-        // { name: 'Thor', publisher: 'Marvel' }
-
-        console.log(heroes.findIndex(hero => hero.name === 'Thor'));
-        // 2
-
-  section
-    h4.title Array.fill()
-
-    pre
-      code.javascript.
-        let heroes = [
-          { name: 'Hulk', publisher: 'Marvel' },
-          { name: 'Spiderman', publisher: 'Marvel' },
-          { name: 'Thor', publisher: 'Marvel' },
-          { name: 'Iron Man', publisher: 'Marvel' },
-        ];
-
-        heroes.fill('hueBR', 1, 3);
-        console.log(heroes);
-        // [
-        //  { name: 'Hulk', publisher: 'Marvel' },
-        //  "hueBR",
-        //  "hueBR",
-        //  { name: 'Iron Man', publisher: 'Marvel' },
-        // ]
+        console.log(Object.values(heroes));
+        //[0, 1, 2, 3]
