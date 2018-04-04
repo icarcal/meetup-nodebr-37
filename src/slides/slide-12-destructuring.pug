@@ -3,72 +3,74 @@ section
     h2.title DESTRUCTURING
 
   section
-    h4.title Array.from()
+    h4.title Objects
 
     pre
       code.javascript.
-        const hero = Array.from('Batman');
+        // pré ES6
+        const vilan = {
+          name: 'Magneto',
+          power: 'Manipulação de campos magnéticos',
+          hasCape: true,
+          hasHelmet: true,
+        };
 
-        console.log(hero);
-        // ["B", "a", "t", "m", "a", "n"]
+        const name = vilan.name;
+        const power = vilan.power;
+        const hasCape = vilan.hasCape;
+        const hasHelmet = vilan.hasHelmet;
 
-        console.log(hero.join(''));
-        // 'Batman'
-
-        // é possível utilizar todas as funçoes
-        // presentes em um array
+        console.log(name, power, hasCape, hasHelmet);
+        // Magneto Manipulação de campos magnéticos true true
 
   section
-    h4.title Array.of()
-
     pre
       code.javascript.
-        const array = Array.of('Batman', 'Dark Knight', 1, 2, {});
+        // pós ES6
+        const vilan = {
+          name: 'Magneto',
+          power: 'Manipulação de campos magnéticos',
+          hasCape: true,
+          hasHelmet: true,
+        };
 
-        console.log(array);
-        // ["Batman", "Dark Knight", 1, 2, {}]
+        const { name, power, hasCape, hasHelmet } = vilan;
 
-        console.log(hero.join(''));
-        // "BatmanDark Knight12[object Object]"
-
-        // é possível utilizar todas as funçoes
-        // presentes em um array
+        console.log(name, power, hasCape, hasHelmet);
+        // Magneto Manipulação de campos magnéticos true true
 
   section
-    h4.title Array.find() & Array.findIndex()
+    pre
+      code.javascript.
+        // pós ES6
+        const vilan = {
+          name: 'Magneto',
+          power: 'Manipulação de campos magnéticos',
+          hasCape: true,
+          hasHelmet: true,
+        };
+
+        const { name, power: superPower, hasCape, hasHelmet,
+          publisher = 'Marvel' } = vilan;
+
+        console.log(name, superPower, hasCape, hasHelmet, publisher);
+        // Magneto Manipulação de campos magnéticos true true Marvel
+
+  section
+    h4.title Arrays
 
     pre
       code.javascript.
-        const heroes = [
-          { name: 'Hulk', publisher: 'Marvel' },
-          { name: 'Spiderman', publisher: 'Marvel' },
-          { name: 'Thor', publisher: 'Marvel' },
-          { name: 'Iron Man', publisher: 'Marvel' },
+        // pós ES6
+        const vilan = [
+          'Magneto',
+          'Manipulação de campos magnéticos',
+          true,
+          true
         ];
 
-        console.log(heroes.find(hero => hero.name === 'Thor'));
-        // { name: 'Thor', publisher: 'Marvel' }
+        const [ name, power, hasCape, hasHelmet,
+          publisher = 'Marvel'] = vilan;
 
-        console.log(heroes.findIndex(hero => hero.name === 'Thor'));
-        // 2
-
-  section
-    h4.title Array.fill()
-
-    pre
-      code.javascript.
-        let heroes = [
-          { name: 'Hulk', publisher: 'Marvel' },
-          { name: 'Spiderman', publisher: 'Marvel' },
-          { name: 'Thor', publisher: 'Marvel' },
-          { name: 'Iron Man', publisher: 'Marvel' },
-        ];
-
-        heroes.fill('hueBR', 1, 3);
-        console.log(heroes);
-        // [
-        //  { name: 'Hulk', publisher: 'Marvel' },
-        //  "hueBR",
-        //  "hueBR",
-        //  { name: 'Iron Man', publisher: 'Marvel' },
-        // ]
+        console.log(name, power, hasCape, hasHelmet, publisher);
+        // Magneto Manipulação de campos magnéticos true true Marvel

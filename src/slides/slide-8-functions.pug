@@ -13,7 +13,10 @@ section
           name = name || 'Yoda';
           lightsaberColor = lightsaberColor || 'verde';
 
-          console.log(`${this.name} utilizou seu sabre de luz ${this.lightsaberColor}`);
+          console.log(
+            `${this.name} utilizou seu sabre de luz
+              ${this.lightsaberColor}`
+          );
         }
 
         jediAttack();
@@ -27,7 +30,10 @@ section
       code.javascript.
         // depois
         function jediAttack(name = 'Yoda', lightsaberColor = 'verde') {
-          console.log(`${this.name} utilizou seu sabre de luz ${this.lightsaberColor}`);
+          console.log(
+            `${this.name} utilizou seu sabre de luz
+              ${this.lightsaberColor}`
+          );
         }
 
         jediAttack();
@@ -97,7 +103,10 @@ section
 
           attack: function() {
             setTimeout(function() {
-              console.log(`${this.name} utilizou seu sabre de luz ${this.lightsaberColor}`);
+              console.log(
+                `${this.name} utilizou seu sabre de luz
+                  ${this.lightsaberColor}`
+                );
             }, 1000);
           }
         }
@@ -117,7 +126,10 @@ section
           attack: function() {
             let self = this;
             setTimeout(() => {
-              console.log(`${self.name} utilizou seu sabre de luz ${self.lightsaberColor}`);
+              console.log(
+                `${self.name} utilizou seu sabre de luz
+                  ${self.lightsaberColor}`
+              );
             }, 1000);
           }
         }
@@ -135,7 +147,10 @@ section
 
           attack: function() {
             setTimeout(() => {
-              console.log(`${this.name} utilizou seu sabre de luz ${this.lightsaberColor}`);
+              console.log(
+                `${this.name} utilizou seu sabre de luz
+                  ${this.lightsaberColor}`
+                );
             }, 1000);
           }
         }
@@ -143,4 +158,4 @@ section
         jedi.attack();
         // Cat Vader utilizou seu sabre de luz vermelho
 
-  section(data-background="https://media.giphy.com/media/WBea8bEI90ViM/giphy.gif")
+  section(data-background="img/lighsaber-cat.gif")

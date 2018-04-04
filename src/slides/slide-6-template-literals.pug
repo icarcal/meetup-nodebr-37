@@ -17,11 +17,12 @@ section
         }
 
         console.log(
-          'O ' + jedi.name ' possui um sabre de luz ' + jedi.lightsaberColor
+          'O ' + jedi.name ' possui um sabre de luz '
+               + jedi.lightsaberColor
         );
         // O Yoda possui um sabre de luz verde
 
-  section(data-background="https://media.giphy.com/media/waW6pj0nLMwCY/giphy.gif")
+  section(data-background="img/yoda-green.gif")
 
   section
     pre
@@ -33,7 +34,8 @@ section
         }
 
         console.log(
-          `O ${jedi.name} possui um sabre de luz ${jedi.lightsaberColor}`
+          `O ${jedi.name} possui um sabre de luz
+              ${jedi.lightsaberColor}`
         );
         // O Yoda possui um sabre de luz verde
 
@@ -49,15 +51,14 @@ section
 
           return `O ${values[0]} agora é do lado negro da força`;
         }
-
         const jedi = {
           name: 'Yoda',
           lightsaberColor: 'verde',
         }
-
         console.log(
-          comeToTheDarkSide `O ${jedi.name} possui um sabre de luz ${jedi.lightsaberColor}`
+          comeToTheDarkSide `O ${jedi.name} possui um sabre de luz
+            ${jedi.lightsaberColor}`
         );
         // O Yoda agora é do lado negro da força
 
-  section(data-background="https://media.giphy.com/media/qRhXEKCDQxfVu/giphy.gif")
+  section(data-background="img/yoda-darkside.gif")

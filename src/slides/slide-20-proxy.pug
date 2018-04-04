@@ -1,0 +1,34 @@
+section
+  section
+    h2.title PROXY
+
+  section
+    pre
+      code.javascript.
+        let hero = {
+          name: 'Hulk',
+          attack: 'Smash',
+        };
+
+        let proxy = new Proxy(hero, {
+          get(target, name) {
+            console.log(target, name);
+            console.log('proxy get');
+            return target[name];
+          },
+          set(target, name, value) {
+            console.log(target, name);
+            console.log('proxy set');
+            target[name] = value.toUpperCase();
+          },
+        });
+
+        proxy.name
+        // {name: "Hulk", attack: "Smash"} "name"
+        // proxy get
+        // Hulk
+        proxy.name = 'Magneto';
+        // {name: "Hulk", attack: "Smash"} "name"
+        // proxy set
+        hero.name
+        // MAGNETO

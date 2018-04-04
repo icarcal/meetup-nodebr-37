@@ -1,0 +1,45 @@
+section
+  section
+    h2.title MAP & WEAKMAP
+
+  section
+    h4 Map
+    pre
+      code.javascript.
+        let map = new Map();
+
+        map.set('Magneto', 1);
+        map.set('Apocalipse', 2);
+        map.set('Thanos', 3);
+
+        console.log(map);
+        // Map(2) {"Magneto" => 1, "Apocalipse" => 2, "Thanos" => 3}
+        map.size
+        // 3
+        map.delete('Magneto');
+        // true
+        console.log(map);
+        // Map(2) {"Apocalipse" => 2, "Thanos" => 3}
+        map.has('Apocalipse');
+        // true
+
+  section
+    h4 WeakMap
+
+    pre
+      code.javascript.
+        let obj1 = { name: 'Thanos' };
+        let obj2 = { name: 'Magneto' };
+        let map = new WeakMap();
+
+        map.set(obj1, 'Descrição do Thanos');
+        map.set(obj2, 'Descrição do Magneto');
+
+        console.log(map);
+        // WeakMap {, {…} => "Descrição do Thanos",
+        //  {…} => "Descrição do Magneto"}
+
+        obj1 = null;
+
+        console.log(map);
+        // WeakMap {{…} => "Descrição do Magneto"}

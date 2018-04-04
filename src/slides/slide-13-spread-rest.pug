@@ -1,74 +1,58 @@
 section
   section
-    h2.title DESTRUCTURING
+    h3.title SPREAD & REST OPERATORS
 
   section
-    h4.title Array.from()
+    h4.title Spread
 
     pre
       code.javascript.
-        const hero = Array.from('Batman');
+        const heroes = ['Hulk', 'Thor', 'Iron Man'];
 
-        console.log(hero);
-        // ["B", "a", "t", "m", "a", "n"]
-
-        console.log(hero.join(''));
-        // 'Batman'
-
-        // é possível utilizar todas as funçoes
-        // presentes em um array
-
-  section
-    h4.title Array.of()
-
-    pre
-      code.javascript.
-        const array = Array.of('Batman', 'Dark Knight', 1, 2, {});
-
-        console.log(array);
-        // ["Batman", "Dark Knight", 1, 2, {}]
-
-        console.log(hero.join(''));
-        // "BatmanDark Knight12[object Object]"
-
-        // é possível utilizar todas as funçoes
-        // presentes em um array
-
-  section
-    h4.title Array.find() & Array.findIndex()
-
-    pre
-      code.javascript.
-        const heroes = [
-          { name: 'Hulk', publisher: 'Marvel' },
-          { name: 'Spiderman', publisher: 'Marvel' },
-          { name: 'Thor', publisher: 'Marvel' },
-          { name: 'Iron Man', publisher: 'Marvel' },
-        ];
-
-        console.log(heroes.find(hero => hero.name === 'Thor'));
-        // { name: 'Thor', publisher: 'Marvel' }
-
-        console.log(heroes.findIndex(hero => hero.name === 'Thor'));
-        // 2
-
-  section
-    h4.title Array.fill()
-
-    pre
-      code.javascript.
-        let heroes = [
-          { name: 'Hulk', publisher: 'Marvel' },
-          { name: 'Spiderman', publisher: 'Marvel' },
-          { name: 'Thor', publisher: 'Marvel' },
-          { name: 'Iron Man', publisher: 'Marvel' },
-        ];
-
-        heroes.fill('hueBR', 1, 3);
         console.log(heroes);
-        // [
-        //  { name: 'Hulk', publisher: 'Marvel' },
-        //  "hueBR",
-        //  "hueBR",
-        //  { name: 'Iron Man', publisher: 'Marvel' },
-        // ]
+        // ['Hulk', 'Thor', 'Iron Man']
+
+        console.log(...heroes);
+        // Hulk Thor Iron Man
+
+  section
+    pre
+      code.javascript.
+        const heroes = ['Hulk', 'Thor', 'Iron Man'];
+        const vilans = ['Thanos', 'Mandarim', 'Apocalipse'];
+
+        const heroesAndVilans = [...heroes, 'Ultron', ...vilans];
+
+        console.log(heroesAndVilans);
+        // ["Hulk", "Thor", "Iron Man", "Ultron", "Thanos", "Mandarim",
+        //  "Apocalipse"]
+
+  section
+    pre
+      code.javascript.
+        function logVilans(vilan1, vilan2, vilan3) {
+          console.log(
+            `${vilan1}, ${vilan2}, ${vilan3}, são vilões da Marvel`
+          );
+        }
+
+        const vilans = ['Thanos', 'Mandarim', 'Apocalipse'];
+
+        logVilans(...vilans);
+        // Thanos, Mandarim, Apocalipse, são vilões da Marvel
+
+  section
+    h4.title Rest
+
+    pre
+      code.javascript.
+        function logVilans(hero, ...vilans) {
+          console.log(
+            `${vilans.join(', ')}, são vilões da Marvel e o
+              ${hero} é o herói`
+          );
+        }
+
+        logVilans('Hulk', 'Thanos', 'Mandarim', 'Apocalipse');
+        // Thanos, Mandarim, Apocalipse, são vilões da Marvel
+        //  e o Hulk é o herói

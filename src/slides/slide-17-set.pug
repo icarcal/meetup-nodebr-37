@@ -1,0 +1,37 @@
+section
+  section
+    h2.title SET & WEAKSET
+
+  section
+    h4 Set
+    pre
+      code.javascript.
+        let set = new Set(['Magneto', 'Apocalipse', 'Thanos']);
+
+        set.add('Red Skull');
+
+        console.log(set);
+        Set(4) {"Magneto", "Apocalipse", "Thanos", "Red Skull"}
+        set.size
+        // 4
+        set.delete('Magneto');
+        // true
+        console.log(set);
+        // Set(3) {"Apocalipse", "Thanos", "Red Skull"}
+        set.has('Apocalipse');
+        // true
+        set.clear();
+        //Set(0) {}
+
+  section
+    h4 WeakSet
+
+    pre
+      code.javascript.
+        let obj1 = { name: 'Thanos' };
+        let obj2 = { name: 'Magneto' };
+
+        let set = new WeakSet([obj1, obj2]);
+
+        set.delete(obj1); // true
+        set.has(obj2); // true
