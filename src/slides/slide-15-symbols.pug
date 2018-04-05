@@ -1,4 +1,6 @@
-section
+- var notes = 'Cada valor símbolo retornado de Symbol() é único'
+
+section(data-notes=notes)
   section
     h2.title SYMBOLS
 
@@ -12,13 +14,13 @@ section
 
         let a = 'a';
         let b = 'a';
-        console.log(symbol === symbolCopia) // true
+        console.log(a === b) // true
 
   section
     pre
       code.javascript.
         let obj = {
-          [Symbol('Identificador')]: '1' ,
+          [Symbol('identifier')]: '1' ,
           name: 'Objeto com identificador'
         };
 
