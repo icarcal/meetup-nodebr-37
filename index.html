@@ -1,0 +1,570 @@
+<!DOCTYPE html><html><head><meta charset="UTF-8"><title>ES6, 7, 8 e contando</title><meta name="description" content="Create your presentations never been so easy with code."><meta name="author" content="You"><meta property="og:type" content="website"><meta property="og:image" content="img/qualy-presenter.png"><meta property="og:description" content="Create your presentations never been so easy with code."><meta name="viewport" content="width=device-width, initial-scale=1.0"><link rel="stylesheet" type="text/css" href="css/main.css"><link rel="stylesheet" type="text/css" href="css/theme.css"><link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"><script>if ( window.location.search.match( /print-pdf/gi )) {
+  var link = document.createElement( 'link' );
+  link.rel = 'stylesheet';
+  link.type = 'text/css';
+  link.href = window.location.search.match( /print-pdf/gi ) ? 'css/pdf.css' : 'css/paper.css';
+  document.getElementsByTagName( 'head' )[0].appendChild( link );
+}</script></head><body><div class="reveal"><div class="slides"><section><h2>ES6, 7, 8 e contando</h2><h5><a href="https://medium.com/@icarcal">Icaro Caldeira Carreira</a> /<a href="https://github.com/icarcal"> @icarcal</a></h5></section><section><h2 class="title">Icaro Caldeira Carreira</h2><ul><li>CTO @ <a href="https://itmodel.com"> It Model </a></li><li>8+ XP em desenvolvimento</li><li>Community manager</li><li>Speaker</li></ul></section><section data-notes="0 - Strawman; 1 - Proposal; 2 - Draft; 3 - Candidate; 4 - Finished; ECMA (European Computer Manufactures Association); ECMA-262 Javascript é a linguagem; ECMAScript são as normas"><h2 class="title">ECMA SCRIPT</h2><table class="fragment" style="font-size:20px;"><thead><tr><th>Stage</th><th style="text-align:center;">Purpose</th><th>Phase</th></tr></thead><tbody><tr><td style="text-align:center;">0</td><td>√ Allow input into the specification</td><td>N/A</td></tr><tr><td style="text-align:center;">1</td><td>√ Make the case for the addition<br>√ Describe the shape of a solution<br>√ Identify potential challenges</td><td>Polyfills / demos</td></tr><tr><td style="text-align:center;">2</td><td>√  Precisely describe the syntax and semantics<br>using formal spec language</td><td>Experimental</td></tr><tr><td style="text-align:center;">3</td><td>√ Indicate that further refinement will require<br>feedback from implementations and users</td><td>Spec compliant</td></tr><tr><td style="text-align:center;">4</td><td>√ Indicate that the addition is ready for inclusion<br>in the formal ECMAScript standard</td><td>Shipping</td></tr></tbody></table></section><section><h4>ES1 - 1997</h4><h4>ES2 - 1998</h4><h4>ES3 - 1999</h4><h4>ES4 - Abandoned</h4><h4>ES5 - 2009 - 2011</h4><h4>ES6 - 2015</h4><h4>ES7 - 2016</h4><h4>ES8 - 2017</h4><h4>ES9 - 2018 (?)</h4></section><section><section><h2 class="title">VAR, LET, CONST</h2></section><section><h3 class="title">VAR</h3><pre><code class="javascript">// declaração de variáveis pré ES6
+var jedi = 'Luke Skywalker';
+
+// sofre hoisting
+jedi = 'Luke Skywalker';
+var jedi;
+</code></pre></section><section><h3 class="title">LET</h3><pre><code class="javascript">// declaração de variáveis pós do ES6
+// valor pode ser alterado
+let jedi = 'Luke Skywalker';
+
+jedi = 'yoda';
+</code></pre></section><section><h3 class="title">CONST</h3><pre><code class="javascript">// "imutável"
+const jedi = 'Luke Skywalker';
+jedi = 'Anakin';
+// Uncaught TypeError: Assignment to constant variable.
+
+const jedi = {
+  name: 'Luke Skywalker',
+  lightsaberColor: 'azul',
+}
+
+jedi.lightsaberColor = 'vermelho';</code></pre></section></section><section><section><h2 class="title">TEMPLATE LITERALS</h2><h2 class="title fragment">&</h2><h2 class="title fragment">TAGGED TEMPLATES</h2></section><section><h3 class="title">Concatenação de variáveis</h3></section><section><pre><code class="javascript">// pré ES6
+const jedi = {
+  name: 'Yoda',
+  lightsaberColor: 'verde',
+}
+
+console.log(
+  'O ' + jedi.name ' possui um sabre de luz '
+       + jedi.lightsaberColor
+);
+// O Yoda possui um sabre de luz verde
+</code></pre></section><section data-background="img/yoda-green.gif"></section><section><pre><code class="javascript">// pós ES6
+const jedi = {
+  name: 'Yoda',
+  lightsaberColor: 'verde',
+}
+
+console.log(
+  `O ${jedi.name} possui um sabre de luz
+      ${jedi.lightsaberColor}`
+);
+// O Yoda possui um sabre de luz verde
+</code></pre></section><section><h4>TAGGED TEMPLATE</h4><pre><code class="javascript">function comeToTheDarkSide(strings, ...values) {
+  console.log(strings);
+  // ["O ", " possui um sabre de luz ", ""]
+  console.log(values);
+  // ["Yoda", "verde"]
+
+  return `O ${values[0]} agora é do lado negro da força`;
+}
+const jedi = {
+  name: 'Yoda',
+  lightsaberColor: 'verde',
+}
+console.log(
+  comeToTheDarkSide `O ${jedi.name} possui um sabre de luz
+    ${jedi.lightsaberColor}`
+);
+// O Yoda agora é do lado negro da força
+</code></pre></section><section data-background="img/yoda-darkside.gif"></section></section><section><section><h3 class="title">Object Shorthand Properties</h3></section><section><pre><code class="javascript">// pré ES6
+const name = 'Yoda';
+const lightsaberColor = 'verde';
+const darkSide = false;
+
+const jedi = {
+  name: name,
+  lightsaberColor: lightsaberColor,
+  darkSide: darkSide,
+}
+</code></pre></section><section><pre><code class="javascript">// pós ES6
+const name = 'Yoda';
+const lightsaberColor = 'verde';
+const darkSide = false;
+
+const jedi = {
+  name,
+  lightsaberColor,
+  darkSide,
+}</code></pre></section></section><section><section><h2 class="title">FUNCTIONS</h2></section><section><h2 class="title">DEFAULT PARAMETERS</h2></section><section><pre><code class="javascript">// antes
+function jediAttack(name, lightsaberColor) {
+  name = name || 'Yoda';
+  lightsaberColor = lightsaberColor || 'verde';
+
+  console.log(
+    `${this.name} utilizou seu sabre de luz
+      ${this.lightsaberColor}`
+  );
+}
+
+jediAttack();
+// Yoda utilizou seu sabre de luz verde
+
+jediAttack('Anakin', 'vermelho');
+// Anakin utilizou seu sabre de luz vermelho
+</code></pre></section><section><pre><code class="javascript">// depois
+function jediAttack(name = 'Yoda', lightsaberColor = 'verde') {
+  console.log(
+    `${this.name} utilizou seu sabre de luz
+      ${this.lightsaberColor}`
+  );
+}
+
+jediAttack();
+// Yoda utilizou seu sabre de luz verde
+
+jediAttack('Anakin', 'vermelho');
+// Anakin utilizou seu sabre de luz vermelho
+</code></pre></section><section><h2 class="title">ARROW FUNCTIONS</h2></section><section><pre><code class="javascript">const jedis = [
+  { name: 'Luke', darkSide: false },
+  { name: 'Anakin', darkSide: true },
+]
+
+const darkSide = jedis.filter(function filterJedis(jedi) {
+  return jedi.darkSide;
+});
+
+console.log(darkSide);
+// [{ name: 'Anakin', darkSide: true }]
+</code></pre></section><section><pre><code class="javascript">const jedis = [
+  { name: 'Luke', darkSide: false },
+  { name: 'Anakin', darkSide: true },
+]
+
+const darkSide = jedis.filter((jedi) => {
+  return jedi.darkSide;
+});
+
+console.log(darkSide);
+// [{ name: 'Anakin', darkSide: true }]
+
+</code></pre></section><section><pre><code class="javascript">const jedis = [
+  { name: 'Luke', darkSide: false },
+  { name: 'Anakin', darkSide: true },
+]
+
+const darkSide = jedis.filter(jedi => jedi.darkSide);
+
+console.log(darkSide);
+// [{ name: 'Anakin', darkSide: true }]
+</code></pre></section><section><h3 class="title">Não devemos usar sempre!</h3><h3 class="fragment">Cuidado com o <i>this</i></h3></section><section><pre><code class="javascript">const jedi = {
+  name: 'Luke',
+  darkSide: false,
+  lightsaberColor: 'azul',
+
+  attack: function() {
+    setTimeout(function() {
+      console.log(
+        `${this.name} utilizou seu sabre de luz
+          ${this.lightsaberColor}`
+        );
+    }, 1000);
+  }
+}
+
+jedi.attack();
+// utilizou seu sabre de luz
+// this.name e this.lightsaberColor = undefined
+</code></pre></section><section><pre><code class="javascript">const jedi = {
+  name: 'Luke',
+  darkSide: false,
+  lightsaberColor: 'azul',
+
+  attack: function() {
+    let self = this;
+    setTimeout(() => {
+      console.log(
+        `${self.name} utilizou seu sabre de luz
+          ${self.lightsaberColor}`
+      );
+    }, 1000);
+  }
+}
+
+jedi.attack();
+// Luke utilizou seu sabre de luz azul
+</code></pre></section><section><pre><code class="javascript">const jedi = {
+  name: 'Cat Vader',
+  darkSide: true,
+  lightsaberColor: 'vermelho',
+
+  attack: function() {
+    setTimeout(() => {
+      console.log(
+        `${this.name} utilizou seu sabre de luz
+          ${this.lightsaberColor}`
+        );
+    }, 1000);
+  }
+}
+
+jedi.attack();
+// Cat Vader utilizou seu sabre de luz vermelho
+</code></pre></section><section data-background="img/lighsaber-cat.gif"></section></section><section><section><h2 class="title">STRINGS</h2></section><section><pre><code class="javascript">const hero = 'The Flash';
+
+//ES6
+hero.startsWith('The') // true;
+hero.endsWith('sh') // true;
+hero.includes('Fla') // true;
+
+'huebr'.repeat('5') //huebrhuebrhuebrhuebrhuebr
+
+//ES8
+'6'.padStart(5, '0'); //00006
+'6'.padEnd(5, '0'); //60000</code></pre></section></section><section><section><h2 class="title">ARRAYS</h2></section><section><h4 class="title">Array.from()</h4><pre><code class="javascript">const hero = Array.from('Batman');
+
+console.log(hero);
+// ["B", "a", "t", "m", "a", "n"]
+
+console.log(hero.join(''));
+// 'Batman'
+
+// é possível utilizar todas as funçoes
+// presentes em um array
+</code></pre></section><section><h4 class="title">Array.of()</h4><pre><code class="javascript">const array = Array.of('Batman', 'Dark Knight', 1, 2, {});
+
+console.log(array);
+// ["Batman", "Dark Knight", 1, 2, {}]
+
+console.log(hero.join(''));
+// "BatmanDark Knight12[object Object]"
+
+// é possível utilizar todas as funçoes
+// presentes em um array
+</code></pre></section><section><h4 class="title">Array.find() & Array.findIndex()</h4><pre><code class="javascript">const heroes = [
+  { name: 'Hulk', publisher: 'Marvel' },
+  { name: 'Spiderman', publisher: 'Marvel' },
+  { name: 'Thor', publisher: 'Marvel' },
+  { name: 'Iron Man', publisher: 'Marvel' },
+];
+
+console.log(heroes.find(hero => hero.name === 'Thor'));
+// { name: 'Thor', publisher: 'Marvel' }
+
+console.log(heroes.findIndex(hero => hero.name === 'Thor'));
+// 2
+</code></pre></section><section><h4 class="title">Array.fill()</h4><pre><code class="javascript">let heroes = [
+  { name: 'Hulk', publisher: 'Marvel' },
+  { name: 'Spiderman', publisher: 'Marvel' },
+  { name: 'Thor', publisher: 'Marvel' },
+  { name: 'Iron Man', publisher: 'Marvel' },
+];
+
+heroes.fill('hueBR', 1, 3);
+console.log(heroes);
+// [
+//  { name: 'Hulk', publisher: 'Marvel' },
+//  "hueBR",
+//  "hueBR",
+//  { name: 'Iron Man', publisher: 'Marvel' },
+// ]
+</code></pre></section><section><h4 class="title">Array.includes()</h4><p>Substitui o Array.indexOf()</p><pre><code class="javascript">let heroes = [
+  'Hulk',
+  'Spiderman',
+  'Thor',
+  'Iron Man'
+];
+
+heroes.includes('Hulk'); // true
+heroes.includes('Black Panther'); // false
+heroes.indexOf('Hulk'); // 0
+heroes.indexOf('Black Panther'); // -1</code></pre></section></section><section><section><h2 class="title">OBJECTS</h2></section><section><h4 class="title">Object.entries()</h4><pre><code class="javascript">const heroes = {
+  hulk: 0,
+  thor: 1,
+  blackPanther: 2,
+  drStrange: 3,
+}
+
+console.log(Object.entries(heroes));
+//[
+//   ["hulk", 0]
+//   ["thor", 1]
+//   ["blackPanther", 2]
+//   ["drStrange", 3]
+//]
+</code></pre></section><section><h4 class="title">Object.values()</h4><pre><code class="javascript">const heroes = {
+  hulk: 0,
+  thor: 1,
+  blackPanther: 2,
+  drStrange: 3,
+}
+
+console.log(Object.values(heroes));
+//[0, 1, 2, 3]</code></pre></section></section><section><section><h2 class="title">DESTRUCTURING</h2></section><section><h4 class="title">Objects</h4><pre><code class="javascript">// pré ES6
+const vilan = {
+  name: 'Magneto',
+  power: 'Manipulação de campos magnéticos',
+  hasCape: true,
+  hasHelmet: true,
+};
+
+const name = vilan.name;
+const power = vilan.power;
+const hasCape = vilan.hasCape;
+const hasHelmet = vilan.hasHelmet;
+
+console.log(name, power, hasCape, hasHelmet);
+// Magneto Manipulação de campos magnéticos true true
+</code></pre></section><section><pre><code class="javascript">// pós ES6
+const vilan = {
+  name: 'Magneto',
+  power: 'Manipulação de campos magnéticos',
+  hasCape: true,
+  hasHelmet: true,
+};
+
+const { name, power, hasCape, hasHelmet } = vilan;
+
+console.log(name, power, hasCape, hasHelmet);
+// Magneto Manipulação de campos magnéticos true true
+</code></pre></section><section><pre><code class="javascript">// pós ES6
+const vilan = {
+  name: 'Magneto',
+  power: 'Manipulação de campos magnéticos',
+  hasCape: true,
+  hasHelmet: true,
+};
+
+const { name, power: superPower, hasCape, hasHelmet,
+  publisher = 'Marvel' } = vilan;
+
+console.log(name, superPower, hasCape, hasHelmet, publisher);
+// Magneto Manipulação de campos magnéticos true true Marvel
+</code></pre></section><section><h4 class="title">Arrays</h4><pre><code class="javascript">// pós ES6
+const vilan = [
+  'Magneto',
+  'Manipulação de campos magnéticos',
+  true,
+  true
+];
+
+const [ name, power, hasCape, hasHelmet,
+  publisher = 'Marvel'] = vilan;
+
+console.log(name, power, hasCape, hasHelmet, publisher);
+// Magneto Manipulação de campos magnéticos true true Marvel</code></pre></section></section><section><section><h3 class="title">SPREAD & REST OPERATORS</h3></section><section><h4 class="title">Spread</h4><pre><code class="javascript">const heroes = ['Hulk', 'Thor', 'Iron Man'];
+
+console.log(heroes);
+// ['Hulk', 'Thor', 'Iron Man']
+
+console.log(...heroes);
+// Hulk Thor Iron Man
+</code></pre></section><section><pre><code class="javascript">const heroes = ['Hulk', 'Thor', 'Iron Man'];
+const vilans = ['Thanos', 'Mandarim', 'Apocalipse'];
+
+const heroesAndVilans = [...heroes, 'Ultron', ...vilans];
+
+console.log(heroesAndVilans);
+// ["Hulk", "Thor", "Iron Man", "Ultron", "Thanos", "Mandarim",
+//  "Apocalipse"]
+</code></pre></section><section><pre><code class="javascript">function logVilans(vilan1, vilan2, vilan3) {
+  console.log(
+    `${vilan1}, ${vilan2}, ${vilan3}, são vilões da Marvel`
+  );
+}
+
+const vilans = ['Thanos', 'Mandarim', 'Apocalipse'];
+
+logVilans(...vilans);
+// Thanos, Mandarim, Apocalipse, são vilões da Marvel
+</code></pre></section><section><h4 class="title">Rest</h4><pre><code class="javascript">function logVilans(hero, ...vilans) {
+  console.log(
+    `${vilans.join(', ')}, são vilões da Marvel e o
+      ${hero} é o herói`
+  );
+}
+
+logVilans('Hulk', 'Thanos', 'Mandarim', 'Apocalipse');
+// Thanos, Mandarim, Apocalipse, são vilões da Marvel
+//  e o Hulk é o herói</code></pre></section></section><section><section><h2 class="title">CLASSES</h2></section><section><h3 class="title">Sintatic sugar</h3></section><section><pre><code class="javascript">//pré ES6
+function Hero(name, power) {
+  this.name = name;
+  this.power = power;
+}
+
+Hero.prototype.usePower = function() {
+  console.log(
+    `${this.name} utilizou o seu poder ${this.power}`
+  )
+}
+
+const hulk = new Hero('Hulk', 'Smash');
+const mercurio = new Hero('Mercúrio', 'Velocidade');
+
+hulk.usePower();
+// Hulk utilizou o seu poder Smash
+
+mercurio.usePower();
+// Mercúrio utilizou o seu poder Velocidade
+</code></pre></section><section><pre><code class="javascript">//pós ES6
+class Character {
+  constructor(name, power) {
+    this.name = name;
+    this.power = power;
+  }
+}
+
+class Hero extends Character {
+  constructor(name, power) {
+    super(name, power);
+    this.type = 'Herói';
+  }
+
+  usePower() {
+    console.log(
+      `O ${this.type} ${this.name} utilizou o seu poder
+        ${this.power}`
+    )
+  }
+}
+
+const hulk = new Hero('Hulk', 'Smash');
+const mercurio = new Hero('Mercúrio', 'Velocidade');
+
+hulk.usePower();
+// O Herói Hulk utilizou o seu poder Smash
+
+mercurio.usePower();
+// O Herói Mercúrio utilizou o seu poder Smash
+</code></pre></section><section data-background="img/hulk-smash.gif"></section></section><section data-notes="Cada valor símbolo retornado de Symbol() é único"><section><h2 class="title">SYMBOLS</h2></section><section><pre><code class="javascript">let symbol = Symbol('Identificador');
+let symbolCopia = Symbol('Identificador');
+
+console.log(symbol === symbolCopia) // false
+
+let a = 'a';
+let b = 'a';
+console.log(a === b) // true
+</code></pre></section><section><pre><code class="javascript">let obj = {
+  [Symbol('identifier')]: '1' ,
+  name: 'Objeto com identificador'
+};
+
+console.log(Object.keys(obj));
+// { name: "Objeto com identificador",
+//  Symbol(Identificador): "1" }
+
+console.log(Object.keys(obj));
+// ["name"]
+
+console.log(Object.getOwnPropertySymbols(obj));
+// [Symbol(Identificador)]</code></pre></section></section><section data-notes="Deve-se notar que um Map que é um mapa de um objeto, especialmente, um dicionário de dicionários"><section><h2 class="title">MAP & WEAKMAP</h2></section><section><h4>Map</h4><pre><code class="javascript">let map = new Map();
+
+map.set('Magneto', 1);
+map.set('Apocalipse', 2);
+map.set('Thanos', 3);
+
+console.log(map);
+// Map(2) {"Magneto" => 1, "Apocalipse" => 2, "Thanos" => 3}
+map.size
+// 3
+map.delete('Magneto');
+// true
+console.log(map);
+// Map(2) {"Apocalipse" => 2, "Thanos" => 3}
+map.has('Apocalipse');
+// true
+</code></pre></section><section><h4>WeakMap</h4><pre><code class="javascript">let obj1 = { name: 'Thanos' };
+let obj2 = { name: 'Magneto' };
+let map = new WeakMap();
+
+map.set(obj1, 'Descrição do Thanos');
+map.set(obj2, 'Descrição do Magneto');
+
+console.log(map);
+// WeakMap {, {…} => "Descrição do Thanos",
+//  {…} => "Descrição do Magneto"}
+
+obj1 = null;
+
+console.log(map);
+// WeakMap {{…} => "Descrição do Magneto"}</code></pre></section></section><section data-notes="Objetos Set são coleções de valores,o objeto Set permite que você armazene valores únicos de qualquer tipo, desde valores primitivos a referências a objetos; WeakSets são coleções apenas de objetos e não de valores arbitrários de qualquer tipo"><section><h2 class="title">SET & WEAKSET</h2></section><section><h4>Set</h4><pre><code class="javascript">let set = new Set(['Magneto', 'Apocalipse', 'Thanos']);
+
+set.add('Red Skull');
+
+console.log(set);
+Set(4) {"Magneto", "Apocalipse", "Thanos", "Red Skull"}
+set.size
+// 4
+set.delete('Magneto');
+// true
+console.log(set);
+// Set(3) {"Apocalipse", "Thanos", "Red Skull"}
+set.has('Apocalipse');
+// true
+set.clear();
+//Set(0) {}
+</code></pre></section><section><h4>WeakSet</h4><pre><code class="javascript">let obj1 = { name: 'Thanos' };
+let obj2 = { name: 'Magneto' };
+
+let set = new WeakSet([obj1, obj2]);
+
+set.delete(obj1); // true
+set.has(obj2); // true</code></pre></section></section><section><section><h2 class="title">GENERATORS</h2></section><section><pre><code class="javascript">function *generatorSteps() {
+  console.log('first');
+  yield 'first yield';
+  console.log('second');
+  yield 'second yield';
+  console.log('third');
+  yield 'third yield';
+}
+
+const iterator = generatorSteps();
+
+iterator.next();
+// first
+// {value: "first yield", done: false}
+
+iterator.next();
+// fisecondrst
+// {value: "second yield", done: false}
+
+iterator.next();
+// third
+// {value: "third yield", done: false}
+
+iterator.next();
+// third
+// {value: undefined, done: true}</code></pre></section></section><section><section><h2 class="title">ASYNC / AWAIT</h2></section><section><pre><code class="javascript">const sleepAndResolve = async function() {
+  return new Promise((resolve, reject)=>{
+    setTimeout(() => {
+      resolve({ status: 'resolved :D' });
+    }, 2000);
+  });
+};
+
+async function demoAsyncAwait() {
+  console.log('Iniciando a função');
+  const data = await sleepAndResolve();
+  console.log('Finalizando a função');
+  console.log(data);
+}
+
+demoAsyncAwait();
+// Iniciando a função
+// APÓS 2 SEGUNDOS...
+// Finalizando a função
+// {status: "resolved :D"}
+</code></pre></section><section><h4 class="title">Tratamento de erros feito com try / catch</h4></section></section><section><section><h2 class="title">PROXY</h2></section><section><pre><code class="javascript">let hero = {
+  name: 'Hulk',
+  attack: 'Smash',
+};
+
+let proxy = new Proxy(hero, {
+  get(target, name) {
+    console.log(target, name);
+    console.log('proxy get');
+    return target[name];
+  },
+  set(target, name, value) {
+    console.log(target, name);
+    console.log('proxy set');
+    target[name] = value.toUpperCase();
+  },
+});
+
+proxy.name
+// {name: "Hulk", attack: "Smash"} "name"
+// proxy get
+// Hulk
+proxy.name = 'Magneto';
+// {name: "Hulk", attack: "Smash"} "name"
+// proxy set
+hero.name
+// MAGNETO</code></pre></section></section><section><section><h2 class="title">ESNext</h2></section><section><h3>Template Literals Revision</h3><h3>A New “s” Flag for Regex</h3></section><section><img src="img/ESNext.png"></section></section><section><h2 class="title">Referências</h2><p class="small"><i>https://github.com/tc39/proposals</i></p><p class="small"><i>https://www.ecma-international.org/publications/standards/Ecma-262-arch.htm</i></p><p class="small"><i>https://tc39.github.io/process-document/</i></p><p class="small"><i>https://www.udemy.com/js-com-tdd-na-pratica</i></p><p class="small"><i>http://nitayneeman.com/posts/a-taste-from-ecmascript-2018/</i></p><p class="small"><i>https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Reference/template_strings</i></p><p class="small"><i>https://node.green/</i></p><p class="small"><i>https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Reference/Global_Objects</i></p><p class="small"><i>https://braziljs.org/blog/async-await-js-assincronamente-sincrono/</i></p></section><section><h3>Dúvidas?</h3><img src="img/questions.gif"></section><section><h2>@icarcal</h2><a href="https://github.com/icarcal"><i style="margin-right:20px" class="fa fa-github"></i></a><a href="https://medium.com/@icarcal"><i style="margin-right:20px" class="fa fa-medium"></i></a><a href="https://www.facebook.com/icarcal"><i style="margin-right:20px" class="fa fa-facebook"></i></a><a href="https://twitter.com/icarcal"><i class="fa fa-twitter"></i></a></section><section><h2 class="title">Obrigado <span style="color:red">♥</span></h2><img src="img/thanks.gif"></section></div></div><script src="js/vendor/head.min.js"></script><script src="js/vendor/reveal.js"></script><script src="js/main.js"></script></body></html>
