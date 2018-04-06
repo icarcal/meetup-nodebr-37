@@ -333,7 +333,9 @@
     <select class="speaker-layout-dropdown"></select>
   </div>
 
-  <script src="../../plugin/markdown/marked.js"></script>
+  <script src="../reveal.js"></script>
+  <script src="../plugin/markdown/marked.js"></script>
+  <script src="../plugin/markdown/markdown.js"></script>
   <script>
 
     (function () {
@@ -400,7 +402,7 @@
           setupIframes(data);
           setupKeyboard();
           setupNotes();
-          setupTimer();
+          setupTimer(data.slides);
         }
 
       }
@@ -495,9 +497,9 @@
 
       }
 
-      function getTimings() {
+      function getTimings(slides) {
 
-        var slides = Reveal.getSlides();
+        var slides = slides;
         var defaultTiming = Reveal.getConfig().defaultTiming;
         if (defaultTiming == null) {
           return null;
@@ -540,7 +542,7 @@
        * Create the timer and clock and start updating them
        * at an interval.
        */
-      function setupTimer() {
+      function setupTimer(slides) {
 
         var start = new Date(),
           timeEl = document.querySelector('.speaker-controls-time'),
@@ -554,7 +556,7 @@
           pacingMinutesEl = pacingEl.querySelector('.minutes-value'),
           pacingSecondsEl = pacingEl.querySelector('.seconds-value');
 
-        var timings = getTimings();
+        var timings = getTimings(slides);
         if (timings !== null) {
           pacingTitleEl.style.removeProperty('display');
           pacingEl.style.removeProperty('display');
