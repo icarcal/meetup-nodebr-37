@@ -347,6 +347,7 @@
         upcomingSlide,
         layoutLabel,
         layoutDropdown,
+        slides,
         connected = false;
 
       var SPEAKER_LAYOUTS = {
@@ -398,11 +399,12 @@
 
         if (connected === false) {
           connected = true;
+          slides = data.slides;
 
           setupIframes(data);
           setupKeyboard();
           setupNotes();
-          setupTimer(data.slides);
+          setupTimer();
         }
 
       }
@@ -497,9 +499,7 @@
 
       }
 
-      function getTimings(slides) {
-
-        var slides = slides;
+      function getTimings() {
         var defaultTiming = Reveal.getConfig().defaultTiming;
         if (defaultTiming == null) {
           return null;
@@ -542,7 +542,7 @@
        * Create the timer and clock and start updating them
        * at an interval.
        */
-      function setupTimer(slides) {
+      function setupTimer() {
 
         var start = new Date(),
           timeEl = document.querySelector('.speaker-controls-time'),
@@ -556,7 +556,7 @@
           pacingMinutesEl = pacingEl.querySelector('.minutes-value'),
           pacingSecondsEl = pacingEl.querySelector('.seconds-value');
 
-        var timings = getTimings(slides);
+        var timings = getTimings();
         if (timings !== null) {
           pacingTitleEl.style.removeProperty('display');
           pacingEl.style.removeProperty('display');
