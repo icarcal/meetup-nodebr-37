@@ -29,7 +29,8 @@ var RevealNotes = (function() {
 					namespace: 'reveal-notes',
 					type: 'connect',
 					url: window.location.protocol + '//' + window.location.host + window.location.pathname,
-					state: Reveal.getState()
+          state: Reveal.getState(),
+          slides: Reveal.getSlides()
 				} ), '*' );
 			}, 500 );
 
